@@ -15,7 +15,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------------------------
 # Security
 # ---------------------------------------------------------------------------
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-change-this-in-production-use-env-variable-xyz123!@#')
+_secret_key = os.environ.get('DJANGO_SECRET_KEY')
+if not _secret_key:
+    if os.environ.get('DJANGO_DEBUG', 'True') == 'True':
+        # Allow local dev without setting the key — use a fixed dev-only key
+        _secret_key = 'django-dev-only-key-not-for-production-local-use-only'
+    else:
+        raise ValueError("DJANGO_SECRET_KEY environment variable must be set in production!")
+SECRET_KEY = _secret_key
 
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
