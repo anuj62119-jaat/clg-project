@@ -100,8 +100,8 @@ To run the project on your development machine:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/ranveer6713/Smart-QR.git
-   cd Smart-QR
+   git clone https://github.com/anuj62119-jaat/clg-project.git
+   cd clg-project
    ```
 
 2. **Set up a virtual environment**:
